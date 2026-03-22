@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adobe Full Stack Creative Cloud Pack — Fastech Junction Digital</title>
+
+<!-- ============================================================
+  🎨 EDITABLE ZONE — PAGE SETTINGS
+  Change the tab title above in <title> tag
+  Change fonts below by swapping the Google Fonts URL
+============================================================ -->
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   🎨 EDITABLE ZONE — COLORS & THEME
+   Change any color variable here to retheme the whole page
+============================================================ */
+:root {
+  --primary:      #FF0000;        /* Main accent — Adobe red */
+  --primary-dark: #cc0000;        /* Darker shade of accent */
+  --primary-glow: rgba(255,0,0,0.18);
+  --gold:         #FFB800;        /* Secondary accent — gold */
+  --gold-glow:    rgba(255,184,0,0.15);
+  --dark:         #080810;        /* Page background */
+  --dark2:        #0f0f1c;        /* Card background */
+  --dark3:        #161628;        /* Elevated card */
+  --border:       rgba(255,255,255,0.07);
+  --border-hover: rgba(255,0,0,0.25);
+  --text:         rgba(255,255,255,0.85);
+  --muted:        rgba(255,255,255,0.42);
+  --success:      #00D68F;
+  --white:        #ffffff;
+}
+
+/* ── RESET & BASE ── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--dark);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* Subtle noise texture overlay */
+body::after {
+  content:'';
+  position:fixed; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events:none; z-index:9999; opacity:0.5;
+}
+
+/* ── HEADER / TOPBAR ── */
+/* ============================================================
+   🎨 EDITABLE ZONE — TOPBAR TEXT
+   Edit the announcement text inside .topbar-text
+============================================================ */
+.topbar {
+  background: var(--primary);
+  padding: 10px 24px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+.topbar::before {
+  content:'';
+  position:absolute; inset:0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  animation: shimmer 3s infinite;
+}
+@keyframes shimmer { 0%{transform:translateX(-100%)} 100%{transform:translateX(100%)} }
+
+.topbar-text { position:relative; z-index:1; }
+.topbar-text strong { font-weight:700; }
+
+/* ── NAV ── */
+nav {
+  position: sticky; top:0; z-index:100;
+  background: rgba(8,8,16,0.92);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+/* ============================================================
+   🎨 EDITABLE ZONE — LOGO/BRAND NAME
+   Change the text inside .nav-logo
+============================================================ */
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  letter-spacing: 2px;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-logo span { color: var(--primary); }
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--white); }
+
+/* ============================================================
+   🎨 EDITABLE ZONE — NAV CTA BUTTON TEXT
+   Change text inside .nav-cta
+============================================================ */
+.nav-cta {
+  background: var(--primary);
+  color: var(--white);
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 1px;
+  padding: 10px 22px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.nav-cta:hover { background: var(--primary-dark); transform:translateY(-1px); }
+
+@media(max-width:768px) { .nav-links { display:none; } nav { padding:0 20px; } }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 24px 80px;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,0,0,0.12) 0%, transparent 70%),
+              radial-gradient(ellipse 60% 40% at 80% 80%, rgba(255,184,0,0.06) 0%, transparent 70%),
+              var(--dark);
+}
+
+/* Animated floating orbs */
+.hero::before {
+  content:'';
+  position:absolute;
+  width:600px; height:600px;
+  border-radius:50%;
+  background: radial-gradient(circle, rgba(255,0,0,0.07) 0%, transparent 70%);
+  top:-200px; left:50%; transform:translateX(-50%);
+  animation: float-orb 8s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes float-orb {
+  0%,100%{transform:translateX(-50%) translateY(0)} 
+  50%{transform:translateX(-50%) translateY(-30px)}
+}
+
+.hero-inner { max-width: 820px; position:relative; z-index:2; }
+
+/* ============================================================
+   🎨 EDITABLE ZONE — HERO BADGE TEXT
+============================================================ */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,0,0,0.1);
+  border: 1px solid rgba(255,0,0,0.3);
+  color: #ff6666;
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border-radius: 40px;
+  margin-bottom: 30px;
+  animation: fadeUp 0.7s ease both;
+}
+
+/* ============================================================
+   🎨 EDITABLE ZONE — HERO HEADLINE
+   Edit text inside .hero-title h1
+============================================================ */
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(58px, 10vw, 130px);
+  line-height: 0.88;
+  color: var(--white);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  animation: fadeUp 0.7s 0.1s ease both;
+}
+.hero-title .red { color: var(--primary); }
+.hero-title .gold { color: var(--gold); }
+
+/* ============================================================
+   🎨 EDITABLE ZONE — HERO SUBHEADLINE
+   Edit text inside .hero-sub
+============================================================ */
+.hero-sub {
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 580px;
+  margin: 20px auto 40px;
+  line-height: 1.8;
+  font-weight: 300;
+  animation: fadeUp 0.7s 0.2s ease both;
+}
+
+/* ============================================================
+   🎨 EDITABLE ZONE — HERO PILLS (feature highlights)
+   Add/remove .pill divs as needed
+============================================================ */
+.hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 44px;
+  animation: fadeUp 0.7s 0.3s ease both;
+}
+.pill {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  padding: 8px 18px;
+  border-radius: 40px;
+  font-size: 13px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: all 0.3s;
+}
+.pill:hover { border-color: var(--primary); color:var(--white); }
+
+/* ── HERO CTA BUTTONS ── */
+.hero-btns {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeUp 0.7s 0.4s ease both;
+}
+
+/* ============================================================
+   🎨 EDITABLE ZONE — MAIN CTA BUTTON
+   Change href to your payment link
+   Change button text as needed
+============================================================ -->
+============================================================ */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--primary);
+  color: var(--white);
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 1px;
+  padding: 18px 40px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+  box-shadow: 0 8px 40px rgba(255,0,0,0.35);
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+@keyframes glow-pulse {
+  0%,100%{box-shadow:0 8px 40px rgba(255,0,0,0.35)}
+  50%{box-shadow:0 12px 60px rgba(255,0,0,0.55)}
+}
+.btn-primary:hover { transform:translateY(-3px); background:var(--primary-dark); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  color: var(--white);
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  padding: 18px 32px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.btn-secondary:hover { border-color: rgba(255,255,255,0.25); background:rgba(255,255,255,0.04); }
+
+/* ── HERO STATS ── */
+/* ============================================================
+   🎨 EDITABLE ZONE — STATS ROW
+   Edit numbers and labels in the .hero-stats section below
+============================================================ */
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 64px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
+  animation: fadeUp 0.7s 0.5s ease both;
+}
+.stat { text-align:center; }
+.stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  line-height: 1;
+  color: var(--white);
+}
+.stat-num .red { color:var(--primary); }
+.stat-label { font-size:12px; color:var(--muted); letter-spacing:1.5px; text-transform:uppercase; margin-top:4px; }
+
+/* ── ADOBE ICONS STRIP ── */
+.icons-strip {
+  padding: 32px 0;
+  background: var(--dark2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  position: relative;
+}
+.icons-strip::before, .icons-strip::after {
+  content:'';
+  position:absolute;
+  top:0; bottom:0; width:120px; z-index:2;
+}
+.icons-strip::before { left:0; background:linear-gradient(90deg,var(--dark2),transparent); }
+.icons-strip::after  { right:0; background:linear-gradient(-90deg,var(--dark2),transparent); }
+
+.icons-track {
+  display: flex;
+  gap: 20px;
+  animation: scroll-icons 22s linear infinite;
+  width: max-content;
+}
+@keyframes scroll-icons { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* ============================================================
+   🎨 EDITABLE ZONE — APP ICONS
+   Add or remove .app-icon divs. Change letter, color, label.
+============================================================ */
+.app-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.app-icon-box {
+  width: 56px; height: 56px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  color: var(--white);
+  transition: transform 0.3s;
+}
+.app-icon:hover .app-icon-box { transform:translateY(-4px) scale(1.1); }
+.app-icon-label { font-size: 10px; color: var(--muted); letter-spacing:1px; }
+
+/* ── SECTION BASE ── */
+.section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 96px 24px;
+}
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  max-width: 100%;
+}
+
+/* ============================================================
+   🎨 EDITABLE ZONE — SECTION TITLES
+   Each section has a .section-eyebrow, .section-title, .section-desc
+   Edit text directly in the HTML body below
+============================================================ */
+.section-eyebrow {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-eyebrow::before {
+  content:'';
+  width:28px; height:2px;
+  background:var(--primary);
+  display:block;
+}
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(40px, 5vw, 68px);
+  color: var(--white);
+  line-height: 0.95;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+.section-title .red { color:var(--primary); }
+.section-title .gold { color:var(--gold); }
+.section-desc {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 560px;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* ── WHAT'S INCLUDED GRID ── */
+/* ============================================================
+   🎨 EDITABLE ZONE — INCLUDED ITEMS
+   Edit .include-card divs in the HTML below
+============================================================ */
+.include-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 52px;
+}
+@media(max-width:768px) { .include-grid { grid-template-columns:1fr; } }
+@media(max-width:1024px) and (min-width:769px) { .include-grid { grid-template-columns:1fr 1fr; } }
+
+.include-card {
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.include-card::before {
+  content:'';
+  position:absolute; top:0; left:0; right:0;
+  height:2px;
+  background:linear-gradient(90deg, var(--primary), transparent);
+  opacity:0;
+  transition:opacity 0.3s;
+}
+.include-card:hover { border-color:var(--border-hover); transform:translateY(-4px); }
+.include-card:hover::before { opacity:1; }
+
+.include-icon { font-size:36px; margin-bottom:14px; display:block; }
+.include-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.include-desc { font-size:14px; color:var(--muted); line-height:1.7; }
+.include-badge {
+  display:inline-block;
+  margin-top:12px;
+  background:rgba(255,0,0,0.1);
+  border:1px solid rgba(255,0,0,0.2);
+  color:#ff7777;
+  font-size:11px;
+  letter-spacing:1px;
+  padding:4px 10px;
+  border-radius:20px;
+}
+
+/* ── FEATURES / WHY US ── */
+/* ============================================================
+   🎨 EDITABLE ZONE — FEATURES
+   Edit .feature-item divs in the HTML below
+============================================================ */
+.features-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 52px;
+  align-items: center;
+  margin-top: 52px;
+}
+@media(max-width:768px) { .features-wrap { grid-template-columns:1fr; } }
+
+.feature-list { display:flex; flex-direction:column; gap:20px; }
+.feature-item {
+  display:flex;
+  gap:16px;
+  align-items:flex-start;
+  padding:20px;
+  background:var(--dark2);
+  border:1px solid var(--border);
+  border-radius:10px;
+  transition:all 0.3s;
+}
+.feature-item:hover { border-color:var(--border-hover); background:var(--dark3); }
+.feature-item-icon {
+  width:44px; height:44px;
+  border-radius:10px;
+  background:var(--primary-glow);
+  border:1px solid rgba(255,0,0,0.2);
+  display:flex; align-items:center; justify-content:center;
+  font-size:20px;
+  flex-shrink:0;
+}
+.feature-item-text {}
+.feature-item-title {
+  font-family:'Syne',sans-serif;
+  font-weight:700;
+  font-size:15px;
+  color:var(--white);
+  margin-bottom:4px;
+}
+.feature-item-desc { font-size:13px; color:var(--muted); line-height:1.6; }
+
+/* Big visual box */
+.features-visual {
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 40px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.features-visual::before {
+  content:'';
+  position:absolute; inset:0;
+  background:radial-gradient(ellipse at 50% 0%, rgba(255,0,0,0.1), transparent 70%);
+}
+.big-price {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:90px;
+  line-height:1;
+  color:var(--white);
+  position:relative;
+}
+.big-price sup { font-size:36px; color:var(--primary); }
+.price-old {
+  font-size:20px;
+  color:var(--muted);
+  text-decoration:line-through;
+  margin-top:4px;
+}
+.price-saving {
+  display:inline-block;
+  background:var(--primary);
+  color:var(--white);
+  font-family:'Syne',sans-serif;
+  font-weight:800;
+  font-size:13px;
+  letter-spacing:1px;
+  padding:6px 16px;
+  border-radius:30px;
+  margin-top:12px;
+}
+
+/* ── TESTIMONIALS ── */
+/* ============================================================
+   🎨 EDITABLE ZONE — TESTIMONIALS
+   Edit .testi-card divs in the HTML below
+============================================================ */
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 16px;
+  margin-top: 52px;
+}
+@media(max-width:900px) { .testi-grid { grid-template-columns:1fr; } }
+
+.testi-card {
+  background:var(--dark2);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:28px;
+  position:relative;
+  transition:all 0.3s;
+}
+.testi-card:hover { border-color:var(--border-hover); transform:translateY(-3px); }
+.testi-card::before {
+  content:'"';
+  position:absolute; top:16px; right:20px;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:80px;
+  color:var(--primary);
+  opacity:0.12;
+  line-height:1;
+}
+.stars { color:var(--gold); font-size:16px; margin-bottom:12px; letter-spacing:2px; }
+.testi-text { font-size:14px; color:var(--muted); line-height:1.8; font-style:italic; margin-bottom:18px; }
+.testi-author { display:flex; align-items:center; gap:12px; }
+.testi-avatar {
+  width:40px; height:40px; border-radius:50%;
+  background:linear-gradient(135deg,var(--primary),#ff6600);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Syne',sans-serif; font-weight:800;
+  font-size:14px; color:var(--white);
+  flex-shrink:0;
+}
+.testi-name { font-weight:600; font-size:14px; color:var(--white); }
+.testi-role { font-size:12px; color:var(--muted); }
+
+/* ── FAQ ── */
+/* ============================================================
+   🎨 EDITABLE ZONE — FAQ QUESTIONS
+   Edit .faq-item divs in the HTML below
+============================================================ */
+.faq-list { margin-top:52px; display:flex; flex-direction:column; gap:12px; }
+.faq-item {
+  background:var(--dark2);
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+  transition:border-color 0.3s;
+}
+.faq-item.open { border-color:rgba(255,0,0,0.3); }
+.faq-q {
+  padding:20px 24px;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-family:'Syne',sans-serif;
+  font-weight:600;
+  font-size:15px;
+  color:var(--white);
+  transition:background 0.2s;
+}
+.faq-q:hover { background:rgba(255,255,255,0.02); }
+.faq-arrow { color:var(--muted); font-size:12px; transition:transform 0.3s; }
+.faq-item.open .faq-arrow { transform:rotate(180deg); color:var(--primary); }
+.faq-a {
+  display:none;
+  padding:0 24px 20px;
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.8;
+  border-top:1px solid var(--border);
+  padding-top:16px;
+}
+.faq-item.open .faq-a { display:block; }
+
+/* ── TRUST BADGES ── */
+/* ============================================================
+   🎨 EDITABLE ZONE — TRUST BADGES
+   Edit .trust-item divs in the HTML below
+============================================================ */
+.trust-row {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:20px;
+  padding:48px 24px;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.trust-item {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:13px;
+  color:var(--muted);
+}
+.trust-icon { font-size:22px; }
+
+/* ── FINAL CTA SECTION ── */
+/* ============================================================
+   🎨 EDITABLE ZONE — FINAL CTA SECTION
+   Edit text inside .cta-section below
+============================================================ */
+.cta-section {
+  text-align:center;
+  padding:100px 24px;
+  position:relative;
+  overflow:hidden;
+  background:radial-gradient(ellipse 70% 50% at 50% 50%, rgba(255,0,0,0.1) 0%, transparent 70%);
+}
+.cta-section-title {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(52px,8vw,100px);
+  color:var(--white);
+  line-height:0.9;
+  letter-spacing:2px;
+  margin-bottom:20px;
+}
+.cta-section-title .red { color:var(--primary); }
+.cta-section-desc {
+  font-size:17px;
+  color:var(--muted);
+  max-width:520px;
+  margin:0 auto 44px;
+  line-height:1.8;
+}
+.cta-guarantee {
+  margin-top:24px;
+  font-size:13px;
+  color:var(--muted);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+
+/* ── FOOTER ── */
+/* ============================================================
+   🎨 EDITABLE ZONE — FOOTER TEXT
+   Edit text inside footer below
+============================================================ */
+footer {
+  background:var(--dark2);
+  border-top:1px solid var(--border);
+  padding:36px 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:16px;
+}
+.footer-brand {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:20px;
+  letter-spacing:2px;
+  color:var(--white);
+}
+.footer-brand span { color:var(--primary); }
+.footer-copy { font-size:12px; color:var(--muted); }
+.footer-links { display:flex; gap:20px; }
+.footer-links a { font-size:12px; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+.footer-links a:hover { color:var(--white); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.reveal {
+  opacity:0; transform:translateY(24px);
+  transition:opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ── FLOATING CTA BAR (mobile) ── */
+.sticky-cta {
+  display:none;
+  position:fixed;
+  bottom:0; left:0; right:0;
+  background:rgba(8,8,16,0.95);
+  backdrop-filter:blur(20px);
+  border-top:1px solid var(--border);
+  padding:14px 20px;
+  z-index:200;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+@media(max-width:640px) { .sticky-cta { display:flex; } }
+.sticky-cta-text { font-size:13px; color:var(--muted); }
+.sticky-cta-text strong { color:var(--white); font-size:15px; display:block; }
+.sticky-cta-btn {
+  background:var(--primary);
+  color:var(--white);
+  font-family:'Syne',sans-serif;
+  font-weight:800;
+  font-size:13px;
+  padding:12px 20px;
+  border-radius:6px;
+  border:none;
+  cursor:pointer;
+  text-decoration:none;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+  🎨 EDITABLE ZONE — ANNOUNCEMENT BAR
+  Change the text below
+============================================================ -->
+<div class="topbar">
+  <div class="topbar-text">
+    🔥 <strong>LIMITED TIME:</strong> Adobe Full Stack Creative Cloud Pack — One-Time Payment. Yours Forever. &nbsp;|&nbsp; ⚡ Instant Access After Payment
+  </div>
+</div>
+
+<!-- ── NAVIGATION ── -->
+<nav>
+  <!-- 🎨 EDIT: Brand/Logo name -->
+  <div class="nav-logo">FASTECH <span>JUNCTION</span> DIGITAL</div>
+
+  <ul class="nav-links">
+    <!-- 🎨 EDIT: Nav links -->
+    <li><a href="#whats-included">What's Included</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+
+  <!-- 🎨 EDIT: href = your payment link -->
+  <a href="https://selar.com/46yuo420c5" class="nav-cta" target="_blank">Get Access →</a>
+</nav>
+
+<!-- ── HERO SECTION ── -->
+<section class="hero" id="hero">
+  <div class="hero-inner">
+
+    <!-- 🎨 EDIT: Badge text -->
+    <div class="hero-badge">🎨 Complete Creative Suite · 2026 Edition</div>
+
+    <!-- 🎨 EDIT: Main headline -->
+    <h1 class="hero-title">
+      ADOBE<br>
+      <span class="red">FULL STACK</span><br>
+      CREATIVE PACK
+    </h1>
+
+    <!-- 🎨 EDIT: Subheadline -->
+    <p class="hero-sub">
+      Every professional Adobe app in one complete bundle. Photoshop, Illustrator, Premiere Pro, After Effects, InDesign, XD &amp; more — pay once, own forever.
+    </p>
+
+    <!-- 🎨 EDIT: Pills — add/remove features -->
+    <div class="hero-pills">
+      <div class="pill">✔ Lifetime Access</div>
+      <div class="pill">✔ All 2026 Apps Included</div>
+      <div class="pill">✔ Instant Delivery</div>
+      <div class="pill">✔ 100% Guaranteed</div>
+      <div class="pill">✔ No Monthly Fees</div>
+    </div>
+
+    <!-- 🎨 EDIT: href on btn-primary = your payment link -->
+    <div class="hero-btns">
+      <a href="https://selar.com/46yuo420c5" class="btn-primary" target="_blank">
+        🛒 Get Instant Access Now
+      </a>
+      <a href="#whats-included" class="btn-secondary">
+        See What's Inside ↓
+      </a>
+    </div>
+
+    <!-- 🎨 EDIT: Stats numbers and labels -->
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num"><span class="red">20+</span></div>
+        <div class="stat-label">Adobe Apps</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">1×</div>
+        <div class="stat-label">Payment Only</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><span class="red">10K+</span></div>
+        <div class="stat-label">Happy Creatives</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Lifetime Access</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── ADOBE ICONS SCROLLING STRIP ── -->
+<!-- 🎨 EDIT: Add/remove app-icon blocks. Icons are duplicated for seamless loop -->
+<div class="icons-strip">
+  <div class="icons-track" id="iconTrack">
+    <!-- Set 1 -->
+    <div class="app-icon"><div class="app-icon-box" style="background:#FF0000">Ps</div><div class="app-icon-label">Photoshop</div></div>
+    <div class="app-icon"><div class="app-icon-box" style="background:#FF7700">Ai</div><div class="app-icon-label">Illustrator</div></div>
+    <div class="app-icon"><div class="app-icon-box" style="background:#9999FF">Ae</div><div class="app-icon-label">After Effects</div></div>
+    <div class="app-icon"><div class="app-icon-box" style="background:#9999FF">Pr</div><div class="app-icon-label">Premiere Pro</div></div>
+    <div class="app-icon"><div class="app-icon-box" style="background:#FF2BC2">Id</div><div class="app-icon-label">InDesign</div></div>
+    <div class="app-icon"><div class="app-icon-box" style="background:#00C8FF">Xd</div><div class="app-icon-label">Adobe XD</div></div>
+    <div class="app-icon"><div class="app-icon-box" style="background:#00B140">Lr</div><div class="app-icon-label">Lightroom</div></div>
+    <div class="app-icon"><div class="app-icon-box" style="background:#E8001B">Ru</div><div class="app-icon-label">Rush</div></div>
+    <div class="app-icon"><div class="app-icon-box" style="background:#1473E6">Cc</div><div class="app-icon-label">Creative Cloud</div></div>
+    <div class="app-icon"><div class="app-icon-box" style="background:#FF6C00">An</div><div class="app-icon-label">Animate</div></div>
+    <div class="app-icon"><div class="app-icon-box" style="background:#2AFF00;color:#000">Dw</div><div class="app-icon-label">Dreamweaver</div></div>
+    <div class="app-icon"><div class="app-icon-box" style="background:#E0529C">Br</div><div class="app-icon-label">Bridge</div></div>
+    <!-- Set 2 (duplicate for seamless loop) -->
+    <div class="app-icon"><div class="app-icon-box" style="background:#FF0000">Ps</div><div class="app-icon-label">Photoshop</div></div>
+    <div class="app-icon"><div class="app-icon-box" style="background:#FF7700">Ai</div><div class="app-icon-label">Illustrator</div></div>
+    <div class="app-icon"><div class="app-icon-box" style="background:#9999FF">Ae</div><div class="app-icon-label">After Effects</div></div>
+    <div class="app-icon"><div class="app-icon-box" style="background:#9999FF">Pr</div><div class="app-icon-label">Premiere Pro</div></div>
+    <div class="app-icon"><div class="app-icon-box" style="background:#FF2BC2">Id</div><div class="app-icon-label">InDesign</div></div>
+    <div class="app-icon"><div class="app-icon-box" style="background:#00C8FF">Xd</div><div class="app-icon-label">Adobe XD</div></div>
+    <div class="app-icon"><div class="app-icon-box" style="background:#00B140">Lr</div><div class="app-icon-label">Lightroom</div></div>
+    <div class="app-icon"><div class="app-icon-box" style="background:#E8001B">Ru</div><div class="app-icon-label">Rush</div></div>
+    <div class="app-icon"><div class="app-icon-box" style="background:#1473E6">Cc</div><div class="app-icon-label">Creative Cloud</div></div>
+    <div class="app-icon"><div class="app-icon-box" style="background:#FF6C00">An</div><div class="app-icon-label">Animate</div></div>
+    <div class="app-icon"><div class="app-icon-box" style="background:#2AFF00;color:#000">Dw</div><div class="app-icon-label">Dreamweaver</div></div>
+    <div class="app-icon"><div class="app-icon-box" style="background:#E0529C">Br</div><div class="app-icon-label">Bridge</div></div>
+  </div>
+</div>
+
+<!-- ── WHAT'S INCLUDED ── -->
+<section class="section" id="whats-included">
+  <div class="reveal">
+    <!-- 🎨 EDIT: Section eyebrow, title, desc -->
+    <div class="section-eyebrow">Everything You Get</div>
+    <h2 class="section-title">THE COMPLETE<br><span class="red">CREATIVE ARSENAL</span></h2>
+    <p class="section-desc">One pack. Every professional Adobe tool you need to design, edit, animate, and publish at the highest level.</p>
+  </div>
+
+  <!-- 🎨 EDIT: Add/remove .include-card blocks below -->
+  <div class="include-grid">
+
+    <div class="include-card reveal">
+      <span class="include-icon">🖼️</span>
+      <div class="include-title">Adobe Photoshop 2026</div>
+      <div class="include-desc">The world's #1 image editing software. Retouch photos, create composites, design graphics, and bring any vision to life.</div>
+      <span class="include-badge">Included</span>
+    </div>
+
+    <div class="include-card reveal">
+      <span class="include-icon">✏️</span>
+      <div class="include-title">Adobe Illustrator 2026</div>
+      <div class="include-desc">Industry-standard vector graphics editor. Create logos, icons, illustrations, and brand identities with infinite scalability.</div>
+      <span class="include-badge">Included</span>
+    </div>
+
+    <div class="include-card reveal">
+      <span class="include-icon">🎬</span>
+      <div class="include-title">Adobe Premiere Pro 2026</div>
+      <div class="include-desc">Professional video editing for YouTube, film, TV, and social media. Used by top studios and content creators worldwide.</div>
+      <span class="include-badge">Included</span>
+    </div>
+
+    <div class="include-card reveal">
+      <span class="include-icon">✨</span>
+      <div class="include-title">Adobe After Effects 2026</div>
+      <div class="include-desc">Motion graphics and visual effects powerhouse. Create stunning animations, titles, and cinematic VFX for any project.</div>
+      <span class="include-badge">Included</span>
+    </div>
+
+    <div class="include-card reveal">
+      <span class="include-icon">📄</span>
+      <div class="include-title">Adobe InDesign 2026</div>
+      <div class="include-desc">The go-to tool for professional layout design. Books, magazines, brochures, flyers, and print-ready documents made easy.</div>
+      <span class="include-badge">Included</span>
+    </div>
+
+    <div class="include-card reveal">
+      <span class="include-icon">🌅</span>
+      <div class="include-title">Adobe Lightroom 2026</div>
+      <div class="include-desc">Professional photo management and editing. Organize, enhance, and export thousands of photos with powerful AI-assisted tools.</div>
+      <span class="include-badge">Included</span>
+    </div>
+
+    <div class="include-card reveal">
+      <span class="include-icon">🎵</span>
+      <div class="include-title">Adobe Audition 2026</div>
+      <div class="include-desc">Professional audio workstation. Record, mix, and master audio for podcasts, videos, music production, and broadcast.</div>
+      <span class="include-badge">Included</span>
+    </div>
+
+    <div class="include-card reveal">
+      <span class="include-icon">🎭</span>
+      <div class="include-title">Adobe Animate 2026</div>
+      <div class="include-desc">Create interactive animations and multimedia content for web, games, and TV. Export to HTML5, WebGL, and more.</div>
+      <span class="include-badge">Included</span>
+    </div>
+
+    <!-- 🎨 EDIT: Add a new card here if needed:
+    <div class="include-card reveal">
+      <span class="include-icon">🔧</span>
+      <div class="include-title">YOUR NEW APP NAME</div>
+      <div class="include-desc">Description of the new app goes here.</div>
+      <span class="include-badge">Included</span>
+    </div>
+    -->
+
+    <div class="include-card reveal" style="border-color:rgba(255,184,0,0.2); background:rgba(255,184,0,0.04)">
+      <span class="include-icon">🎁</span>
+      <div class="include-title">+ Many More Apps</div>
+      <div class="include-desc">Adobe XD, Dreamweaver, Bridge, Character Animator, Media Encoder, Acrobat Pro, and the full Creative Cloud suite.</div>
+      <span class="include-badge" style="background:rgba(255,184,0,0.1);border-color:rgba(255,184,0,0.3);color:#FFD966;">20+ Apps Total</span>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ── FEATURES / WHY BUY ── -->
+<section class="section" id="features">
+  <div class="reveal">
+    <!-- 🎨 EDIT: Features section title -->
+    <div class="section-eyebrow">Why Choose This Pack</div>
+    <h2 class="section-title">THE SMART WAY<br>TO GO <span class="red">FULL ADOBE</span></h2>
+    <p class="section-desc">Stop bleeding money on monthly subscriptions. This is the only Adobe investment you'll ever need to make.</p>
+  </div>
+
+  <div class="features-wrap">
+
+    <!-- 🎨 EDIT: Add/remove .feature-item blocks -->
+    <div class="feature-list">
+
+      <div class="feature-item reveal">
+        <div class="feature-item-icon">💰</div>
+        <div class="feature-item-text">
+          <div class="feature-item-title">One-Time Payment — Own It Forever</div>
+          <div class="feature-item-desc">No subscriptions. No renewals. No monthly fees draining your wallet. Pay once and the entire pack is yours for life.</div>
+        </div>
+      </div>
+
+      <div class="feature-item reveal">
+        <div class="feature-item-icon">⚡</div>
+        <div class="feature-item-text">
+          <div class="feature-item-title">Instant Access After Payment</div>
+          <div class="feature-item-desc">Your download link is delivered immediately after your payment is confirmed. No waiting. No delays. Start creating in minutes.</div>
+        </div>
+      </div>
+
+      <div class="feature-item reveal">
+        <div class="feature-item-icon">🛡️</div>
+        <div class="feature-item-text">
+          <div class="feature-item-title">100% Satisfaction Guaranteed</div>
+          <div class="feature-item-desc">We stand behind this pack completely. If you have any issues accessing your files, our support team is ready to help immediately.</div>
+        </div>
+      </div>
+
+      <div class="feature-item reveal">
+        <div class="feature-item-icon">🔄</div>
+        <div class="feature-item-text">
+          <div class="feature-item-title">Latest 2024 Versions — Fully Updated</div>
+          <div class="feature-item-desc">Get the most current versions of every Adobe app, updated with the latest features, AI tools, and performance improvements.</div>
+        </div>
+      </div>
+
+      <!-- 🎨 EDIT: Add a new feature here:
+      <div class="feature-item reveal">
+        <div class="feature-item-icon">🌟</div>
+        <div class="feature-item-text">
+          <div class="feature-item-title">Your New Feature Title</div>
+          <div class="feature-item-desc">Description of the new feature goes here.</div>
+        </div>
+      </div>
+      -->
+
+    </div>
+
+    <!-- 🎨 EDIT: Price display box -->
+    <div class="features-visual reveal">
+      <div style="font-size:13px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; margin-bottom:16px;">One-Time Investment</div>
+      <div class="big-price">
+        <!-- 🎨 EDIT: Change price here -->
+        <sup>$</sup>PRICE
+      </div>
+      <div class="price-old">vs $659.88/year subscription</div>
+      <!-- 🎨 EDIT: Change savings text -->
+      <div class="price-saving">🔥 You Save 90%+ vs Adobe's Plan</div>
+
+      <div style="margin:28px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:20px 0;">
+        <div style="display:flex; flex-direction:column; gap:10px; text-align:left;">
+          <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--muted)"><span>✓ All 20+ Adobe Apps</span><span style="color:var(--success)">Included</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--muted)"><span>✓ Lifetime Access</span><span style="color:var(--success)">Included</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--muted)"><span>✓ Instant Download</span><span style="color:var(--success)">Included</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:13px; color:var(--muted)"><span>✓ 2026 Latest Versions</span><span style="color:var(--success)">Included</span></div>
+          <!-- 🎨 EDIT: Add more line items here -->
+        </div>
+      </div>
+
+      <!-- 🎨 EDIT: href = your payment link -->
+      <a href="https://selar.com/46yuo420c5" class="btn-primary" style="width:100%; justify-content:center;" target="_blank">
+        🛒 Get Instant Access
+      </a>
+      <div style="font-size:12px; color:var(--muted); margin-top:12px;">🔒 Secure Payment · Instant Delivery</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ── TRUST BADGES ── -->
+<!-- 🎨 EDIT: Add/remove trust items below -->
+<div class="trust-row reveal">
+  <div class="trust-item"><span class="trust-icon">🔒</span> Secure Payment</div>
+  <div class="trust-item"><span class="trust-icon">⚡</span> Instant Delivery</div>
+  <div class="trust-item"><span class="trust-icon">♾️</span> Lifetime Access</div>
+  <div class="trust-item"><span class="trust-icon">💯</span> 100% Guaranteed</div>
+  <div class="trust-item"><span class="trust-icon">🎨</span> All 2026 Apps</div>
+  <div class="trust-item"><span class="trust-icon">🚫</span> No Monthly Fees</div>
+</div>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="section" id="testimonials">
+  <div class="reveal">
+    <!-- 🎨 EDIT: Testimonials section title -->
+    <div class="section-eyebrow">Real Customer Reviews</div>
+    <h2 class="section-title">10,000+ HAPPY<br><span class="red">CREATIVES</span></h2>
+    <p class="section-desc">Join thousands of designers, videographers, and creative professionals who made the smart switch.</p>
+  </div>
+
+  <!-- 🎨 EDIT: Add/remove/edit .testi-card blocks -->
+  <div class="testi-grid">
+
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <div class="testi-text">"Best investment I've made for my design business. Got the full Adobe suite and made back the cost on my very first client project. This is a no-brainer."</div>
+      <div class="testi-author">
+        <div class="testi-avatar">MK</div>
+        <div>
+          <div class="testi-name">Marcus K.</div>
+          <div class="testi-role">Freelance Brand Designer</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <div class="testi-text">"I cancelled all my Adobe subscriptions after getting this pack. Everything I need is here, the setup was smooth, and I'm saving over $600 a year. 10/10."</div>
+      <div class="testi-author">
+        <div class="testi-avatar">AR</div>
+        <div>
+          <div class="testi-name">Aisha R.</div>
+          <div class="testi-role">Creative Director</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <div class="testi-text">"As a video editor, Premiere Pro and After Effects alone are worth it. Getting the full suite for a one-time price is absolutely insane value. Highly recommend."</div>
+      <div class="testi-author">
+        <div class="testi-avatar">TD</div>
+        <div>
+          <div class="testi-name">Tunde D.</div>
+          <div class="testi-role">YouTube Content Creator</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🎨 EDIT: Add a new testimonial here:
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <div class="testi-text">"Your new testimonial quote goes here."</div>
+      <div class="testi-author">
+        <div class="testi-avatar">AB</div>
+        <div>
+          <div class="testi-name">Customer Name</div>
+          <div class="testi-role">Their Role / Job</div>
+        </div>
+      </div>
+    </div>
+    -->
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ── FAQ ── -->
+<section class="section" id="faq">
+  <div class="reveal">
+    <!-- 🎨 EDIT: FAQ section title -->
+    <div class="section-eyebrow">Got Questions?</div>
+    <h2 class="section-title">FREQUENTLY ASKED<br><span class="red">QUESTIONS</span></h2>
+  </div>
+
+  <!-- 🎨 EDIT: Add/remove/edit .faq-item blocks -->
+  <div class="faq-list">
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        How do I receive my Adobe pack after payment?
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        Immediately after your payment is confirmed, you will be redirected to your secure download page. All files are available for instant download — no waiting, no delays.
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Is this really a one-time payment with no recurring fees?
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        Yes, absolutely. You pay once and own the complete Adobe Full Stack Creative Cloud Pack forever. There are no monthly fees, no annual renewals, and no hidden charges whatsoever.
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Which Adobe applications are included in the pack?
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        The pack includes 20+ Adobe applications: Photoshop, Illustrator, Premiere Pro, After Effects, InDesign, Lightroom, Audition, Animate, XD, Dreamweaver, Bridge, Character Animator, Media Encoder, Acrobat Pro, and more — all 2024 versions.
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Is the payment method secure?
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        Yes. All payments are processed through a fully encrypted, secure payment gateway. Your financial information is never stored on our servers. You can pay with confidence.
+      </div>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        What if I have trouble downloading or installing?
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        Our support team is available to help you every step of the way. If you encounter any issues with your download or installation, reach out immediately and we'll resolve it for you.
+      </div>
+    </div>
+
+    <!-- 🎨 EDIT: Add a new FAQ here:
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Your new question here?
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        Your answer here.
+      </div>
+    </div>
+    -->
+
+  </div>
+</section>
+
+<!-- ── FINAL CTA ── -->
+<!-- 🎨 EDIT: Final CTA section text -->
+<section class="cta-section" id="get-access">
+  <div class="reveal">
+    <div class="hero-badge" style="margin:0 auto 28px">🔥 Limited Time Offer</div>
+    <h2 class="cta-section-title">
+      OWN ADOBE.<br>
+      <span class="red">FOREVER.</span>
+    </h2>
+    <p class="cta-section-desc">
+      Stop renting. Start owning. Get the complete Adobe Full Stack Creative Cloud Pack today — one payment, lifetime access, instant delivery.
+    </p>
+
+    <!-- 🎨 EDIT: href = your payment link -->
+    <a href="https://selar.com/46yuo420c5" class="btn-primary" style="font-size:18px; padding:20px 52px;" target="_blank">
+      🛒 Get Instant Access Now
+    </a>
+
+    <div class="cta-guarantee">
+      🔒 Secure Payment &nbsp;·&nbsp; ⚡ Instant Delivery &nbsp;·&nbsp; ♾️ Lifetime Access &nbsp;·&nbsp; 💯 Guaranteed
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<!-- 🎨 EDIT: Footer brand name, copyright, links -->
+<footer>
+  <div class="footer-brand">FASTECH <span>JUNCTION</span> DIGITAL</div>
+  <div class="footer-copy">© 2024 Fastech Junction Digital. All rights reserved.</div>
+  <div class="footer-links">
+    <!-- 🎨 EDIT: Add/change footer links and hrefs -->
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+    <a href="#">Contact Support</a>
+  </div>
+</footer>
+
+<!-- ── STICKY MOBILE CTA ── -->
+<!-- 🎨 EDIT: Mobile bar text and payment link -->
+<div class="sticky-cta">
+  <div class="sticky-cta-text">
+    <strong>Adobe Full Stack Pack</strong>
+    One-time payment · Instant access
+  </div>
+  <a href="https://selar.com/46yuo420c5" class="sticky-cta-btn" target="_blank">Get It Now →</a>
+</div>
+
+<!-- ── SCRIPTS ── -->
+<script>
+// FAQ accordion toggle
+function toggleFaq(header) {
+  const item = header.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// Scroll reveal animation
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Active nav link highlighting
+const navLinks = document.querySelectorAll('.nav-links a');
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  navLinks.forEach(link => {
+    link.style.color = link.getAttribute('href') === '#' + current ? 'var(--white)' : '';
+  });
+});
+</script>
+
+</body>
+</html>
